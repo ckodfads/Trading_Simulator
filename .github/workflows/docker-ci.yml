@@ -1,0 +1,41 @@
+name: Build and Push to Docker Hub
+
+# Kích hoạt quy trình này mỗi khi có code mới được đẩy (push) lên nhánh 'main'
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    # Chạy trên một máy chủ Ubuntu ảo do GitHub cấp miễn phí
+    runs-on: ubuntu-latest
+
+    steps:
+      # Bước 1: Kéo (checkout) toàn bộ code từ repo về máy chủ ảo của GitHub
+      - name: Check out source code
+        uses: actions/checkout@v4
+
+      # Bước 2: Đăng nhập vào Docker Hub bằng các Secrets đã thiết lập
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # Bước 3: Build & Push ảnh cho Java Backend
+      - name: Build and push Backend image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./backend
+          push: true
+          # Đặt tên image (tag) theo chuẩn: <username>/<tên-app>:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/trading-backend:latest
+
+      # Bước 4: Build & Push ảnh cho React Frontend
+      - name: Build and push Frontend image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./frontend
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/trading-frontend:latest

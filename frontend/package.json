@@ -14,8 +14,6 @@
     "@testing-library/user-event": "^13.5.0",
     "caniuse-lite": "^1.0.30001581",
     "file-saver": "^2.0.5",
-    "frontend": "file:",
-    "fsevents": "^2.3.2",
     "jspdf": "^2.5.2",
     "jspdf-autotable": "^3.8.4",
     "localforage": "^1.10.0",

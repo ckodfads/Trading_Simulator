@@ -31,8 +31,7 @@ public class UserController {
         } catch (Exception e) {
             LOGGER.error("Failed to retrieve user info: {}", e.getMessage());
             return ResponseEntity.status(500).body(
-                new ErrorResponse(e.getMessage())
-            );
+                    new ErrorResponse(e.getMessage()));
         }
     }
 
@@ -48,8 +47,7 @@ public class UserController {
         } catch (Exception e) {
             LOGGER.error("Failed to update user: {}", e.getMessage());
             return ResponseEntity.status(500).body(
-                new ErrorResponse(e.getMessage())
-            );
+                    new ErrorResponse(e.getMessage()));
         }
     }
 
@@ -72,8 +70,7 @@ public class UserController {
         } catch (Exception e) {
             LOGGER.error("Failed to delete account: {}", e.getMessage());
             return ResponseEntity.status(500).body(
-                new ErrorResponse(e.getMessage())
-            );
+                    new ErrorResponse(e.getMessage()));
         }
     }
 }

@@ -1,5 +1,5 @@
 const SERVER_PORT = 8080;
-export const BASE_API_URL = `http://localhost:${SERVER_PORT}/api`;
+export const BASE_API_URL = process.env.REACT_APP_API_URL || `http://localhost:${SERVER_PORT}/api`;
 export const ENDPOINTS = {
   STOCKS: "/stocks",
   PORTFOLIO: "/portfolio",
